@@ -14,10 +14,10 @@ class AceConfig(acedefconfig.AceDefConfig):
     # ----------------------------------------------------
     #
     # Spawn Ace Stream Engine automatically
-    acespawn = True
+    acespawn = False
     # Ace Stream cmd line (use `--log-file filepath` to write log)
     # Autodetect for Windows
-    acecmd = "/start_acestream.sh --client-console --bind-all --live-buffer 50 --max-connections 400 --max-peers 200 --live-cache-type memory --live-cache-size 70000000"
+    #acecmd = "/start_acestream.sh --client-console --bind-all --live-buffer 50 --max-connections 400 --max-peers 200 --live-cache-type memory --live-cache-size 70000000"
     # Ace Stream API key
     # You probably shouldn't touch this
     acekey = 'n51LvQoTlJzNGaFxseRK-uvnvX-sD4Vm5Axwmc4UcoD-jruxmKsuJaH0eVgE'
@@ -25,7 +25,7 @@ class AceConfig(acedefconfig.AceDefConfig):
     # Change this if you use remote Ace Stream Engine
     # Remember that by default Ace Stream Engine listens only
     # Local host, so start it with --bind-all parameter
-    acehost = 'localhost'
+    acehost = 'acehost'
     # Ace Stream Engine port (autodetect for Windows)
     aceport = 62062
     # Ace Stream age parameter (LT_13, 13_17, 18_24, 25_34, 35_44, 45_54,
@@ -40,9 +40,9 @@ class AceConfig(acedefconfig.AceDefConfig):
     # Only applies to Windows systems
     acestartuptimeout = 15
     # Ace Stream Engine connection timeout
-    aceconntimeout = 5
+    aceconntimeout = 15
     # Ace Stream Engine authentication result timeout
-    aceresulttimeout = 5
+    aceresulttimeout = 15
     #
     # ----------------------------------------------------
     # AceProxy configuration
@@ -93,15 +93,15 @@ class AceConfig(acedefconfig.AceDefConfig):
     # to point ace_player.exe, not vlc.exe!!!
     vlcuseaceplayer = False
     # Spawn VLC automaticaly
-    vlcspawn = True
+    vlcspawn = False
     # VLC cmd line (use `--file-logging --logfile=filepath` to write log)
     # Please use the full path to executable for Windows, for example - C:\\Program Files\\VideoLAN\\VLC\\vlc.exe
-    vlccmd = "vlc -I telnet --clock-jitter -1 --network-caching -1 --sout-mux-caching 2000 --telnet-password admin --telnet-port 4212"
+    #vlccmd = "vlc -I telnet --clock-jitter -1 --network-caching -1 --sout-mux-caching 2000 --telnet-password admin --telnet-port 4212"
     # VLC spawn timeout
     # Adjust this if you get error 'Cannot spawn VLC!'
     vlcspawntimeout = 30
     # VLC host
-    vlchost = '127.0.0.1'
+    vlchost = 'vlchost'
     # VLC telnet interface port
     vlcport = 4212
     # VLC streaming port (you shouldn't set it in VLC itself)
