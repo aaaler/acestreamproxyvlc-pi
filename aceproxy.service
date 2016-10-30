@@ -1,12 +1,18 @@
 [Unit]
 Description=dockerized aceproxy
+Requires=docker.service acestream.service vlc-nox.service 
+After=docker.service acestream.service vlc-nox.service
+Want=docker.service acestream.service vlc-nox.service
 
 [Service]
 ExecStartPre=-/usr/bin/docker rm -f aceproxy 
-ExecStart=/usr/bin/docker run --privileged -d --name aceproxy -p 8000:8000 -p 8081:8081 -v /etc/aceproxy/torrenttv.py:/aceproxy/plugins/config/torrenttv.py -v /etc/aceproxy/p2pproxy.py:/aceproxy/plugins/config/p2pproxy.py aaaler/aceproxy-pi 
+ExecStartPre=-/usr/bin/docker pull aaaler/aceproxy-pi
+ExecStart=/usr/bin/docker run --name aceproxy -p 8000:8000 -p 8081:8081 -v /etc/aceproxy/torrenttv.py:/aceproxy/plugins/config/torrenttv.py -v /etc/aceproxy/p2pproxy.py:/aceproxy/plugins/config/p2pproxy.py --link acestream:acehost --link vlc-nox:vlchost aaaler/aceproxy-pi 
+ExecStartPost=/bin/sh -c 'while ! docker ps |grep aceproxy ; do sleep 0.2; done'  
 ExecStop=/usr/bin/docker rm -f aceproxy
-TimeoutSec=25
-RemainAfterExit=yes
+TimeoutSec=0
+RemainAfterExit=no
+Restart=Always
 
 [Install]
 WantedBy=multi-user.target

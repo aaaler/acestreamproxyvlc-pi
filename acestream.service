@@ -6,9 +6,11 @@ After=docker.service
 [Service]
 #Type=simple
 ExecStartPre=-/usr/bin/docker rm -f acestream
-ExecStart=/usr/bin/docker run --privileged --rm --name acestream -p 62062:62062 aaaler/acestream-pi --client-console --live-buffer 50 --max-connections 400 --max-peers 200 
+ExecStartPre=-/usr/bin/docker pull aaaler/acestream-pi
+ExecStart=/usr/bin/docker run --privileged --rm --name acestream -p 62062:62062 aaaler/acestream-pi --client-console --live-buffer 50 --max-connections 400 --max-peers 200
+ExecStartPost=/bin/sh -c 'while ! docker ps |grep acestream ; do sleep 0.2; done'   
 ExecStop=/usr/bin/docker rm -f acestream
-TimeoutSec=15
+TimeoutSec=0
 RemainAfterExit=no
 Restart=Always
 
