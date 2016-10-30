@@ -1,0 +1,16 @@
+[Unit]
+Description=dockerized acestream
+Requires=docker.service
+After=docker.service
+
+[Service]
+#Type=simple
+ExecStartPre=-/usr/bin/docker rm -f acestream
+ExecStart=/usr/bin/docker run --privileged --rm --name acestream -p 62062:62062 aaaler/acestream-pi --client-console --live-buffer 50 --max-connections 400 --max-peers 200 
+ExecStop=/usr/bin/docker rm -f acestream
+TimeoutSec=15
+RemainAfterExit=no
+Restart=Always
+
+[Install]
+WantedBy=multi-user.target

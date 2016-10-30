@@ -1,0 +1,13 @@
+[Unit]
+Description=dockerized vlc-nox 4 acestream broadcasting
+
+[Service]
+ExecStartPre=-/usr/bin/docker rm -f vlc-nox
+ExecStart=/usr/bin/docker run  --name vlc-nox -p 4212:4212 -p 8011:8011 aaaler/vlc-nox-pi -I telnet --clock-jitter 0 --network-caching 2000 --sout-mux-caching 2000 --telnet-password admin --telnet-port 4212
+ExecStop=/usr/bin/docker rm -f vlc-nox
+TimeoutSec=25
+RemainAfterExit=no
+Restart=Always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=dockerized aceproxy
+
+[Service]
+ExecStartPre=-/usr/bin/docker rm -f aceproxy 
+ExecStart=/usr/bin/docker run --privileged -d --name aceproxy -p 8000:8000 -p 8081:8081 -v /etc/aceproxy/torrenttv.py:/aceproxy/plugins/config/torrenttv.py -v /etc/aceproxy/p2pproxy.py:/aceproxy/plugins/config/p2pproxy.py aaaler/aceproxy-pi 
+ExecStop=/usr/bin/docker rm -f aceproxy
+TimeoutSec=25
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
