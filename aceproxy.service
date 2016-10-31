@@ -3,6 +3,7 @@ Description=dockerized aceproxy
 Requires=docker.service acestream.service vlc-nox.service 
 After=docker.service acestream.service vlc-nox.service
 Want=docker.service acestream.service vlc-nox.service
+Before=mediacenter.service
 
 [Service]
 ExecStartPre=-/usr/bin/docker rm -f aceproxy 

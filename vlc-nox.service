@@ -1,5 +1,5 @@
 [Unit]
-Description=dockerized vlc-nox 4 acestream broadcasting
+Description=dockerized vlc-nox
 Requires=docker.service                                                                                                                           
 After=docker.service
 
