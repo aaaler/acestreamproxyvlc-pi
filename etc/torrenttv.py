@@ -4,7 +4,7 @@
 Torrent-tv.ru Playlist Downloader Plugin configuration file
 '''
 
-# Insert your Torrent-tv.ru playlist URL here
+# Insert your Torrent-tv.ru playlist URL here (from http://torrent-tv.ru/c_playlist.php)
 url = 'http://asplaylist.net/t/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 # TV Guide URL
