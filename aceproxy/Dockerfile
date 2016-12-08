@@ -8,5 +8,6 @@ RUN adduser --disabled-password --gecos "" aceproxy
 EXPOSE 8000 8081 
 VOLUME /aceproxy/ 
 ADD aceconfig.py /aceproxy/aceconfig.py
-
+RUN DEBIAN_FRONTEND=noninteractive  apt-get update -y && apt-get install -y curl
+HEALTHCHECK CMD curl -f http://127.0.0.1:8000/stat || exit 1
 CMD ["/aceproxy/acehttp.py"]
