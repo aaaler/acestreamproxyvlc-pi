@@ -7,8 +7,8 @@ Before=mediacenter.service
 
 [Service]
 ExecStartPre=-/usr/bin/docker rm -f aceproxy 
-ExecStartPre=-/usr/bin/docker pull aaaler/aceproxy-pi
-ExecStart=/usr/bin/docker run --name aceproxy -p 8000:8000 -p 8081:8081 -v /etc/aceproxy/torrenttv.py:/aceproxy/plugins/config/torrenttv.py -v /etc/aceproxy/p2pproxy.py:/aceproxy/plugins/config/p2pproxy.py --link acestream:acehost --link vlc-nox:vlchost aaaler/aceproxy-pi 
+ExecStartPre=-/usr/bin/docker pull aaaler/aceproxy-pi:newest
+ExecStart=/usr/bin/docker run --restart=unless-stopped --name aceproxy -p 8000:8000 -p 8081:8081 -v /etc/aceproxy/torrenttv.py:/aceproxy/plugins/config/torrenttv.py -v /etc/aceproxy/p2pproxy.py:/aceproxy/plugins/config/p2pproxy.py --link acestream:acehost --link vlc-nox:vlchost aaaler/aceproxy-pi:newest 
 ExecStartPost=/bin/sh -c 'while ! docker ps |grep aceproxy ; do sleep 0.2; done'  
 ExecStop=/usr/bin/docker rm -f aceproxy
 TimeoutSec=0
