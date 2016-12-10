@@ -2,7 +2,7 @@
 Description=dockerized aceproxy
 Requires=docker.service acestream.service vlc-nox.service 
 After=docker.service acestream.service vlc-nox.service
-Want=docker.service acestream.service vlc-nox.service
+Wants=docker.service acestream.service vlc-nox.service
 Before=mediacenter.service
 
 [Service]
@@ -13,7 +13,7 @@ ExecStartPost=/bin/sh -c 'while ! docker ps |grep aceproxy ; do sleep 0.2; done'
 ExecStop=/usr/bin/docker rm -f aceproxy
 TimeoutSec=0
 RemainAfterExit=no
-Restart=Always
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
